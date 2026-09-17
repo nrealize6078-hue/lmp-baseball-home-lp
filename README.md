@@ -15,7 +15,7 @@
 |---|---|
 | `index.html` | 本文。元は1行だったものをタグ単位で改行済み |
 | `style.css` | 元サイトで `<style>` にベタ書きされていたCSSを切り出し |
-| `script.js` | LINEボタンの画像フォールバック＋固定ボトムバーの表示制御 |
+| `script.js` | LINEアイコンの描画＋固定ボトムバーの表示制御 |
 | `assets/baseball-hero.jpg` | ヒーロー画像（CSSの `url()` も書き換え済み） |
 
 ## 複製時の処理
@@ -26,15 +26,17 @@
 
 ## 問い合わせ導線（LINE）
 
-最終CTAはLINE公式アカウント `https://lin.ee/vV1leDB`（新時代の集客LPと同じ窓口）。2か所に置いています。
+問い合わせ先はLINE公式アカウント `https://lin.ee/vV1leDB`（新時代の集客LPと同じ窓口）。3か所に置いています。
 
-1. 最終セクション `.closing` の `.line-card`（白カード＋LINEグリーンの上罫）
-2. 固定ボトムバー `#cta-bar` — ヒーローを過ぎたらせり上がる。上罫はゴールド（#efc76b）でフッターと見分けがつくようにしてある
+1. ファーストビュー `.hero-cta` — 「次の成長への作戦を見る」の隣（スマホでは下）
+2. 最終セクション `.closing` の `.line-card`（白カード＋ゴールドの上罫）
+3. 固定ボトムバー `#cta-bar` — ヒーローを過ぎたらせり上がる。背景はダークグリーン `rgba(21,82,72,.97)`
+
+ボタンはLINE公式の緑の画像ではなく、**サイトのゴールド `--gold:#efc76b`** に統一（`.btn-line`）。LINEのアイコンは `script.js` がSVGパスで描いている。
 
 注意点:
 
-- `hidden` 属性は `display` 指定に負けるため、CSS冒頭に `[hidden]{display:none!important}` を入れてある（これが無いとLINE公式ボタンと予備ボタンが二重に出る）
-- 予備ボタン `.btn-line` はLINE公式の画像が読めない環境のみ `script.js` が表示に切り替える
+- `hidden` 属性は `display` 指定に負けるため、CSS冒頭に `[hidden]{display:none!important}` を入れてある
 - 文言は `index.html` の `.lc-h` / `.lc-t` / `.bar-long` / `.bar-short` を直接編集。スマホは短い方（`.bar-short`）が出る
 
 ## プレビュー
