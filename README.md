@@ -58,3 +58,13 @@ python -m http.server 8961 --directory lmp-baseball-home-lp
 
 **再検証のしかた**: 上記の各幅で、`<br>` 区切りの各行に Range を作り `getClientRects()` の distinct な top が2以上なら再折り返し＝崩れ。
 
+## 文節ごとの折り返し（2026年9月17日）
+
+iOS Safari は `word-break:auto-phrase`（文節折り）に対応していないため、本文の `<p>` を**文節単位で `<span class="bn">` に包み、800px以下で `display:inline-block`** にしている。ブラウザはspanの境目でしか折り返さないので、語の途中で切れない。
+
+- 区切りの判定は「ひらがな→漢字/カタカナ/英数」の境目と句読点の後。`っ ん ー ぁ〜ょ` と接頭辞 `お ご み` の直後では切らない
+- spanを付け直すときは、既存の `<span class="bn">…</span>` を外してから同じ処理をかける
+- 長い語が1行に収まらない場合の保険として `.bn{overflow-wrap:anywhere}`
+- 見出しは `<br class="sp">` で改行位置を指定。ただし**「を、」だけが行に残るような切り方はしない**（1行に収まるなら改行を入れない方がきれい）
+- カード類（`.flow` `.pain-grid` `.solution`）は560px以下で1カラム。2カラムのままだと「企業とつな／がる」のように割れる
+
