@@ -3,7 +3,11 @@
 賃貸仲介・管理会社向けの LMP 加盟LP。
 
 - 元サイト: https://lmp-baseball-home.uminchu-t0422.chatgpt.site/ （ChatGPTのサイト公開機能。2026年9月17日時点を取得）
+- 公開: https://nrealize6078-hue.github.io/lmp-baseball-home-lp/ （GitHub Pages / main / ルート・**検索掲載あり＝noindexなし**）
+- リポジトリ: https://github.com/nrealize6078-hue/lmp-baseball-home-lp （このフォルダ直下が `.git`）
 - **元サイトとこちらは別物。こちらを直しても chatgpt.site 側は変わりません。**
+
+反映は `git add -A && git commit && git push`。1〜2分でPagesに出ます。
 
 ## 構成
 
