@@ -37,3 +37,23 @@ body.has-bar footer{padding-bottom:calc(25px + var(--bar-h))}
   .bar-short{display:inline}
 }
 @media(prefers-reduced-motion:reduce){.cta-bar{transition:none}}
+
+/* ───── スマホの日本語折り返し対策（320pxまで実測して調整） ───── */
+.sp{display:none}
+@media(max-width:800px){
+  .hero h1{font-size:clamp(28px,10.5vw,62px)}
+  .section h2,.pivot h2,.closing h2{font-size:clamp(21px,6.8vw,34px)}
+  .solution h3{font-size:clamp(20px,6.6vw,23px)}
+}
+@media(max-width:720px){
+  p br{display:none}
+}
+@media(max-width:560px){
+  .sp{display:inline}
+  .pain-grid{grid-template-columns:1fr}
+  .solution{grid-template-columns:1fr;gap:6px}
+  .solution>p,.solution h3{grid-column:auto}
+  .btn{gap:14px;font-size:14px;padding:14px 18px}
+}
+p{text-wrap:pretty}
+@supports(word-break:auto-phrase){h1,h2,h3,p,li{word-break:auto-phrase}}

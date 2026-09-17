@@ -44,3 +44,15 @@
 ```bash
 python -m http.server 8961 --directory lmp-baseball-home-lp
 ```
+
+## スマホの折り返し対策（2026年9月17日）
+
+元サイトは `<br>` で改行位置を固定しており、スマホ幅ではその行がさらに折り返して「ホームにしよ／う。」のように語中で切れていた。320/375/414/520/600/700/760px をブラウザで実測しながら以下で解消。
+
+- 見出しは `clamp()` 化（`.hero h1` / `.section h2` / `.solution h3`）
+- 長い見出し行にはスマホだけ効く改行 `<br class="sp">` を追加（560px以下で `display:inline`）
+- 本文は720px以下で `p br{display:none}` にして自然改行へ。`text-wrap:pretty` と `word-break:auto-phrase` も付与
+- 560px以下で `.pain-grid` と `.solution` を1カラム化、CTAボタンの文字を1行に収まる大きさへ
+
+**再検証のしかた**: 上記の各幅で、`<br>` 区切りの各行に Range を作り `getClientRects()` の distinct な top が2以上なら再折り返し＝崩れ。
+
